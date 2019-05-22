@@ -9,7 +9,7 @@
 
 int main(){
     // The kernel maintains a list of per-process open files in a
-    // file table. Each entry is a positive integer called a file
+    // file table. Each entry is a non-negative integer called a file
     // descriptor. Table entries also contain information about the
     // file (later).
     // 
