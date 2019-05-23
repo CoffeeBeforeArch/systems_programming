@@ -18,8 +18,9 @@ int main(){
     //  Group
     //  Everyone else
     // levels. (More bit masks for read, write, and execute)
-
-    // Set the user and group to be r/w, and everyone else to read-only
+    
+    // Set RWX permissions for owner, and R permissions for everyone
+    // else
     // At a bit level, this looks like:
     //  111 100 100
     mode_t mode = S_IWUSR | S_IRUSR | S_IXUSR | S_IRGRP | S_IROTH;
@@ -43,6 +44,7 @@ int main(){
         assert(0);
     }
 
+    // Print the name and fd if file created succesfully
     printf("Created file %s with fd %d\n", name, fd);
 
     return 0;
