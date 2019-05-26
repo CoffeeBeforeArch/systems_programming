@@ -10,14 +10,14 @@
 #include <assert.h>
 
 int main(){
-    // Open our example file for reading
+    // Open our example file for writing (append)
     int fd = open("./test.txt", O_WRONLY | O_APPEND);
     if(fd == -1){
         printf("ERROR: Failed to open file\n");
         assert(0);
     }
 
-    // Buffer in which we will store read in characters (only 100)
+    // Message to write to the file
     const char *message = "This is a test message!";
 
     // Signed size_t for read return
@@ -33,7 +33,7 @@ int main(){
     while(len != 0 && (ret = write(fd, message + position, len)) != 0){
         // Problem with the read
         if(ret == -1){
-            // A signal was received before any bytes were read
+            // A signal was received before any bytes were written
             // Safe to re-issue
             if(errno == EINTR){
                 continue;
@@ -44,10 +44,10 @@ int main(){
             assert(0);
         }
 
-        // Decrease the amount left to read by what was read
+        // Decrease the amount left to write by what was written
         len -= ret;
 
-        // Move over the position of the buffer by an equal amount
+        // Move over the position of the pointer by an equal amount
         position += ret;
 
         printf("Written %ld bytes. Updated len to %ld. Updated position to %d\n", ret, len, position);
