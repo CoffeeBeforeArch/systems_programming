@@ -1,5 +1,5 @@
 # Systems Programming
-This repository contains all code from the YouTube series "C++ Crash Course" by CoffeeBeforeArch.
+This repository contains all code from the YouTube series "Systems Programmin" by CoffeeBeforeArch.
 
 ## Contact
 
